@@ -1,2 +1,11 @@
-@import './common';
-@import './example';
+@import './base/common';
+@import './base/body';
+@import './base/reset';
+
+@import './utils/variables';
+@import './utils/placeholder';
+@import './utils/visually-hidden';
+
+@import './components/search-form';
+@import './components/buttons';
+@import './components/footer';
