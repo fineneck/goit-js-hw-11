@@ -3,9 +3,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
   padding: 15px 0;
 
   background-color: rgb(50, 75, 188);
+}
+
+.input {
+  height: 30px;
+  width: 250px;
+
+  padding-left: 10px;
+  min-height: 20px;
+
+  border: none;
+  outline: none;
+  vertical-align: middle;
+
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;  
 }
 
