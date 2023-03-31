@@ -35,7 +35,7 @@
   align-items: center;
 
   cursor: pointer;
-  background-color: #fff;
+  background-color: $white-color;
   border: none;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px; 
@@ -43,4 +43,28 @@
 
 .icon-search {
   height: 20px;
+}
+
+.load-more {
+  padding: 10px 24px;
+  
+  text-align: center;
+  letter-spacing: 0.06em;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.88;
+  cursor: pointer;
+  border-color: transparent;
+  border-radius: 4px;
+  color: $white-color;
+  background-color: rgb(50, 75, 188);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  transition: background-color rgb(50, 75, 188);
+
+  &:hover,
+  &:focus {
+   background-color: #188ce8;
+   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  }
 }

@@ -5,7 +5,7 @@
   justify-content: center;
   padding: 15px 0;
 
-  background-color: rgb(50, 75, 188);
+  background-color: $bg-search-color;
 }
 
 .input {
@@ -15,6 +15,7 @@
   padding-left: 10px;
   min-height: 20px;
 
+  font: inherit;
   border: none;
   outline: none;
   vertical-align: middle;
