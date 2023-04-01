@@ -19,9 +19,19 @@ refs.btnLoad.addEventListener('click', onLoad);
 function onSearch(e) {
   e.preventDefault();
 
-  imageApiService.searchQuery = e.currentTarget.elements.searchQuery.value;
+  // clearImageGallery();
+  imageApiService.searchQuery = e.currentTarget.elements.searchQuery.value.trim();
+
+  if (imageApiService.searchQuery === '') {
+    return alert('Введи что-то');
+  };
+
   imageApiService.resetPage();
-  imageApiService.fetchImages().then(appendImageMarkup);
+  imageApiService.fetchImages().then(hits => {
+    clearImageGallery();
+    appendImageMarkup(hits);
+    
+  });
   
 };
 
@@ -31,4 +41,8 @@ function onLoad() {
 
 function appendImageMarkup(hits) {
   refs.gallery.insertAdjacentHTML('beforeend', imageTpl(hits));
+};
+
+function clearImageGallery() {
+  refs.gallery.innerHTML = '';  
 }
