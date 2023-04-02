@@ -8,7 +8,6 @@ export default class ImageApiService {
   }
 
   fetchImages() {
-
     const url =
       '' +
       BASE_URL +
@@ -22,7 +21,7 @@ export default class ImageApiService {
 
     return fetch(url)
       .then(response => response.json())
-      .then( ({hits}) => {
+      .then(({ hits }) => {
         this.incrementPage();
         console.log(hits);
         return hits;
