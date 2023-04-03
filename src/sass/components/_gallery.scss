@@ -13,20 +13,18 @@
   width: 100%;
   height: 100%;
   cursor: zoom-in;
+  transition: transform $transition;
+
+  &:hover {
+    transform: scale(1.03);
+  }
 }
 
 .gallery__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  // transition: transform var(--animation-duration) var(--timing-function);
-  transition: transform $transition;
 }
-
-// :root {
-//   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-//   --animation-duration: 250ms;
-// }
 
 .info {
   display: flex;
@@ -43,35 +41,16 @@
   align-items: center;
 }
 
-.gallery__image:hover {
-  transform: scale(1.03);
-}
-
 .photo-card {
   display: flex;
   flex-direction: column;
   flex-basis: calc((100% - 90px) / 4);
   position: relative;
+
+  cursor: default;
   border-radius: 4px;
-  background-color: $white-color;
+  background-color: transparent;
+  box-shadow: 0 10px 10px 0 $card-color;  
+
 }
 
-.photo-card:before,
-.photo-card:after {
-  z-index: -1;
-  position: absolute;
-  content: '';
-  bottom: 15px;
-  left: 10px;
-  width: 50%;
-  top: 80%;
-  background: $card-color;
-  box-shadow: 0 15px 10px $card-color;
-  transform: rotate(-3deg);
-}
-
-.photo-card:after {
-  transform: rotate(3deg);
-  right: 10px;
-  left: auto;
-}

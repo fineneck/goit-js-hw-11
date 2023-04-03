@@ -1,6 +1,8 @@
-// import fetch from './js/fetch';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import ImageApiService from './js/image-service';
-import imageTpl from './templates/markupHits.hbs';
+import imagesTpl from './templates/markupHits.hbs';
 import LoadMoreBtn from './js/load-more-btn';
 import { btnUp } from './js/btn-up';
 
@@ -8,6 +10,10 @@ const imageApiService = new ImageApiService();
 const loadMoreBtn = new LoadMoreBtn({
   selector: '.load-more',
   hidden: true,
+});
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
 });
 
 const refs = {
@@ -27,8 +33,18 @@ function onSearch(e) {
     e.currentTarget.elements.searchQuery.value.trim();
 
   if (imageApiService.searchQuery === '') {
-    return alert('Введи что-то');
+    return Notify.failure(
+      `Sorry, there are no images matching your search query. Please try again.`
+    );
   }
+  // } else {
+  //   const totalItems = response.data.totalHits;
+  //   Notify.success(`Hooray! We found ${totalItems} images.`);
+  // };
+
+  // if (totalItems !== 0 && page === 1) {
+  //   Notiflix.Notify.success(`Hooray! We found ${totalItems} images.`);
+  // }
 
   loadMoreBtn.show();
   imageApiService.resetPage();
@@ -40,12 +56,13 @@ function fetchImages() {
   loadMoreBtn.disable();
   imageApiService.fetchImages().then(hits => {
     appendImageMarkup(hits);
+    lightbox.refresh();
     loadMoreBtn.enable();
   });
 }
 
 function appendImageMarkup(hits) {
-  refs.gallery.insertAdjacentHTML('beforeend', imageTpl(hits));
+  refs.gallery.insertAdjacentHTML('beforeend', imagesTpl(hits));
 }
 
 function clearImageGallery() {
