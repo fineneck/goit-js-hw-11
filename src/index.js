@@ -30,7 +30,7 @@ const refs = {
 };
 
 let query = '';
-let page = 1;
+let page;
 let totalHits = 0;
 let remainsItems = 0;
 
@@ -41,7 +41,8 @@ window.addEventListener('scroll', throttledScrollListener);
 
 async function onSearch(e) {
   e.preventDefault();
-
+  clearImageGallery();
+  page = 1;
   query = refs.input.value.trim();
 
   if (query === '') {
@@ -61,8 +62,8 @@ async function onSearch(e) {
       );
       return;
     }
-    const markup = appendImageMarkup(results);
-    updateNewList(markup);
+
+    appendImageMarkup(results);
     loadMoreBtn.show();
     Notify.success(`Hooray! We found ${totalHits} images.`);
   } catch (error) {
@@ -109,7 +110,7 @@ async function fetchImages(query) {
 }
 
 function updateNewList(markup) {
-  clearImageGallery = markup;
+  refs.gallery.innerHTML = markup;
   lightbox.refresh();
 }
 
