@@ -42,6 +42,7 @@ window.addEventListener('scroll', throttledScrollListener);
 async function onSearch(e) {
   e.preventDefault();
   clearImageGallery();
+
   page = 1;
   query = refs.input.value.trim();
 
@@ -56,7 +57,6 @@ async function onSearch(e) {
     const results = await fetchImages(query);
     if (results.length === 0) {
       loadMoreBtn.hide();
-      updateNewList('');
       Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
