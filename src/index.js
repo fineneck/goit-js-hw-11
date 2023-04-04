@@ -37,11 +37,13 @@ let remainsItems = 0;
 refs.search.addEventListener('submit', onSearch);
 loadMoreBtn.refs.button.addEventListener('click', onButtonClick);
 const throttledScrollListener = throttle(scrollListener, THROTTLE_DELAY);
-window.addEventListener('scroll', throttledScrollListener);
+// window.addEventListener('scroll', throttledScrollListener);
 
 async function onSearch(e) {
   e.preventDefault();
-  clearImageGallery();
+  clearImageGallery()
+  window.addEventListener('scroll', throttledScrollListener);;
+  loadMoreBtn.hide();
 
   page = 1;
   query = refs.input.value.trim();
@@ -55,6 +57,7 @@ async function onSearch(e) {
 
   try {
     const results = await fetchImages(query);
+    loadMoreBtn.hide();
     if (results.length === 0) {
       loadMoreBtn.hide();
       Notify.failure(
@@ -131,10 +134,10 @@ function clearImageGallery() {
   refs.gallery.innerHTML = '';
 }
 
-function scrollListener(e) {
+function scrollListener() {
   const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
 
   if (scrollTop + clientHeight + 1 >= scrollHeight) {
-    return onButtonClick(e);
+    return onButtonClick();
   }
 }
