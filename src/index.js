@@ -126,6 +126,14 @@ function loadMoreList(markup) {
   }
 }
 
+function scrollListener(e) {
+  const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
+
+  if (scrollTop + clientHeight + 1 >= scrollHeight) {
+    return onButtonClick(e);
+  }
+}
+
 function appendImageMarkup(markup) {
   refs.gallery.insertAdjacentHTML('beforeend', imagesTpl(markup));
 }
@@ -134,10 +142,4 @@ function clearImageGallery() {
   refs.gallery.innerHTML = '';
 }
 
-function scrollListener() {
-  const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
 
-  if (scrollTop + clientHeight + 1 >= scrollHeight) {
-    return onButtonClick();
-  }
-}
