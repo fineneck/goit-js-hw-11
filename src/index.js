@@ -1,6 +1,7 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import infiniteScroll from 'infinite-scroll';
 import ImageApiService from './js/image-service';
 import imagesTpl from './templates/markupHits.hbs';
 import LoadMoreBtn from './js/load-more-btn';
@@ -68,3 +69,5 @@ function appendImageMarkup(hits) {
 function clearImageGallery() {
   refs.gallery.innerHTML = '';
 }
+
+
