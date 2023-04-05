@@ -41,8 +41,8 @@ const throttledScrollListener = throttle(scrollListener, THROTTLE_DELAY);
 
 async function onSearch(e) {
   e.preventDefault();
-  clearImageGallery()
-  window.addEventListener('scroll', throttledScrollListener);;
+  clearImageGallery();
+  window.addEventListener('scroll', throttledScrollListener);
   loadMoreBtn.hide();
 
   page = 1;
@@ -126,20 +126,19 @@ function loadMoreList(markup) {
   }
 }
 
-function scrollListener(e) {
+function scrollListener() {
   const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
 
   if (scrollTop + clientHeight + 1 >= scrollHeight) {
-    return onButtonClick(e);
+    return onButtonClick();
   }
 }
 
 function appendImageMarkup(markup) {
   refs.gallery.insertAdjacentHTML('beforeend', imagesTpl(markup));
+  lightbox.refresh();
 }
 
 function clearImageGallery() {
   refs.gallery.innerHTML = '';
 }
-
-
