@@ -37,12 +37,12 @@ let remainsItems = 0;
 refs.search.addEventListener('submit', onSearch);
 loadMoreBtn.refs.button.addEventListener('click', onButtonClick);
 const throttledScrollListener = throttle(scrollListener, THROTTLE_DELAY);
-// window.addEventListener('scroll', throttledScrollListener);
+window.addEventListener('scroll', throttledScrollListener);
 
 async function onSearch(e) {
   e.preventDefault();
   clearImageGallery();
-  window.addEventListener('scroll', throttledScrollListener);
+  // window.addEventListener('scroll', throttledScrollListener);
   loadMoreBtn.hide();
 
   page = 1;
